@@ -81,7 +81,9 @@ public class TicTacToeModel {
         status = Status.UNDECIDED;
     }
 
-    public boolean getTurn() {return turn;}
+    public boolean getTurn() {
+        return turn;
+    }
 
     public void play(int x, int y) {
         if (grid[x][y] != ' ') return;
