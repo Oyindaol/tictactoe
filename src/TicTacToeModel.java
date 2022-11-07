@@ -7,7 +7,7 @@ public class TicTacToeModel {
     public static final boolean X = true;
     public static final boolean O = false;
 
-    public enum Status {X_WON, O_WON, TIE, UNDECIDED};
+    public enum Status {X_WON, O_WON, TIE, UNDECIDED}
 
     private char[][] grid;
     private boolean turn;
