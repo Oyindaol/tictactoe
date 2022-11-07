@@ -33,13 +33,6 @@ public class TicTacToeFrame extends JFrame implements TicTacToeView {
         this.setSize(300,300);
         this.setVisible(true);
     }
-    public void stopButtons(){
-        for(int i = 0; i < TicTacToeModel.SIZE; i++){
-            for(int j = 0; j < TicTacToeModel.SIZE; j++){
-                buttons[i][j].setEnabled(false);
-            }
-        }
-    }
 
     @Override
     public void update(TicTacToeEvent e) {
@@ -47,12 +40,22 @@ public class TicTacToeFrame extends JFrame implements TicTacToeView {
         buttons[e.getX()][e.getY()].setText(label);
 
         if(e.getStatus() == TicTacToeModel.Status.X_WON || e.getStatus() == TicTacToeModel.Status.O_WON){
-            stopButtons();
-            JOptionPane.showMessageDialog(this, label + "WINS THE GAME!");
+
+            for(int i = 0; i < TicTacToeModel.SIZE; i++){
+                for(int j = 0; j < TicTacToeModel.SIZE; j++){
+                    buttons[i][j].setEnabled(false);
+                }
+            }
+            JOptionPane.showMessageDialog(this, label + " WINS THE GAME!");
         }
         else if(e.getStatus() == TicTacToeModel.Status.TIE){
-            stopButtons();
-            JOptionPane.showMessageDialog(this, "GAME IS TIED!");
+
+            for(int i = 0; i < TicTacToeModel.SIZE; i++){
+                for(int j = 0; j < TicTacToeModel.SIZE; j++){
+                    buttons[i][j].setEnabled(false);
+                }
+            }
+            JOptionPane.showMessageDialog(this, " GAME IS TIED!");
         }
     }
 

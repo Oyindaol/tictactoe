@@ -40,23 +40,25 @@ public class TicTacToeModel {
     public Status getStatus() {return status;}
 
     private void updateStatus(int x, int y) {
-        emptySquares--; //decrement after each play
 
         /*UNDECIDED GAME*/
         //For a possible win at least 5 plays should have occurred;
         if (emptySquares > 4){
             status = Status.UNDECIDED;
+            return;
         }
 
         /*WIN GAME*/
         //Win by a vertical play (3 plays a column)
         if (grid[0][y] == grid[1][y] && grid[0][y] == grid[2][y]){
             status = turn? Status.X_WON:Status.O_WON;
+            return;
         }
 
         //Win by a horizontal play (3 plays a row)
         if (grid[x][0] == grid[x][1] && grid[x][0] == grid[x][2]){
             status = turn? Status.X_WON:Status.O_WON;
+            return;
         }
 
         //Win by a diagonal play (3 plays a diagonal)
@@ -64,6 +66,7 @@ public class TicTacToeModel {
             if (grid[0][0] == grid[1][1] && grid[0][0] == grid[2][2]) {
                 status = turn ? Status.X_WON : Status.O_WON;
             }
+            return;
         }
 
         //Win by a diagonal play (3 plays opposite diagonal)
@@ -71,14 +74,18 @@ public class TicTacToeModel {
             if (grid[0][2] == grid[1][1] && grid[0][2] == grid[2][0]) {
                 status = turn ? Status.X_WON : Status.O_WON;
             }
+            return;
         }
 
         /*TIE GAME*/
         if (emptySquares == 0){
             status = Status.TIE;
+            return;
         }
 
         status = Status.UNDECIDED;
+        return;
+
     }
 
     public boolean getTurn() {
@@ -94,5 +101,6 @@ public class TicTacToeModel {
             v.update(new TicTacToeEvent(this, x, y, turn, status));
         }
         changeTurn();
+        emptySquares--; //decrement after each play
     }
 }
